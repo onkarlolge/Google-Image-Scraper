@@ -34,12 +34,22 @@ if __name__ == "__main__":
     image_path = os.path.normpath(os.path.join(os.getcwd(), 'photos'))
 
     #Add new search key into array ["cat","t-shirt","apple","orange","pear","fish"]
-    search_keys = list(set(["cat","t-shirt"]))
+    input_string = input('Enter elements of a list separated by space to search ')
+    print("\n")
+    user_list = input_string.split()
+    # print list
+    print('list: ', user_list)
+
+    # convert each item to int type
+    for i in range(len(user_list)):
+        # convert each item to int type
+        user_list[i] = user_list[i]
+        #search_keys = list(set(["cat","t-shirt","Dogs"]))
 
     #Parameters
     number_of_images = 5                # Desired number of images
     headless = True                     # True = No Chrome GUI
-    min_resolution = (0, 0)             # Minimum desired image resolution
+    min_resolution = (800, 600)             # Minimum desired image resolution
     max_resolution = (9999, 9999)       # Maximum desired image resolution
     max_missed = 10                     # Max number of failed images before exit
     number_of_workers = 1               # Number of "workers" used
@@ -49,4 +59,4 @@ if __name__ == "__main__":
     #Automatically waits for all threads to finish
     #Removes duplicate strings from search_keys
     with concurrent.futures.ThreadPoolExecutor(max_workers=number_of_workers) as executor:
-        executor.map(worker_thread, search_keys)
+        executor.map(worker_thread, user_list)
